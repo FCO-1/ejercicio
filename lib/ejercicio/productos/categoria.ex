@@ -16,5 +16,6 @@ defmodule Ejercicio.Productos.Categoria do
     categoria
     |> cast(attrs, [:nombre, :descripcion])
     |> validate_required([:nombre, :descripcion])
+    |> unique_constraint([:nombre])
   end
 end
