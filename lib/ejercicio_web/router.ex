@@ -18,6 +18,13 @@ defmodule EjercicioWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    live "/cliente", ClienteLive.Index, :index
+    live "/cliente/new", ClienteLive.Index, :new
+    live "/cliente/:id/edit", ClienteLive.Index, :edit
+    live "/cliente/:id", ClienteLive.Show, :show
+    live "/cliente/:id/show/edit", ClienteLive.Show, :edit
+
   end
 
   # Other scopes may use custom stacks.

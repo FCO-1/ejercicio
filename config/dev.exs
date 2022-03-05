@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :ejercicio, Ejercicio.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "dante",
+  password: "ihola1234",
   hostname: "localhost",
   database: "ejercicio_dev",
   show_sensitive_data_on_connection_error: true,
