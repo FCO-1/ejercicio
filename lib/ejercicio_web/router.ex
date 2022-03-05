@@ -19,6 +19,12 @@ defmodule EjercicioWeb.Router do
 
     get "/", PageController, :index
 
+    live "/cliente", ClienteLive.Index, :index
+    live "/cliente/new", ClienteLive.Index, :new
+    live "/cliente/:id/edit", ClienteLive.Index, :edit
+    live "/cliente/:id", ClienteLive.Show, :show
+    live "/cliente/:id/show/edit", ClienteLive.Show, :edit
+
     live "/categorias", CategoriaLive.Index, :index
     live "/categorias/new", CategoriaLive.Index, :new
     live "/categorias/:id/edit", CategoriaLive.Index, :edit
@@ -39,6 +45,7 @@ defmodule EjercicioWeb.Router do
 
     live "/productos/:id", ProductoLive.Show, :show
     live "/productos/:id/show/edit", ProductoLive.Show, :edit
+
   end
 
   # Other scopes may use custom stacks.
