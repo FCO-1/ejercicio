@@ -1,0 +1,41 @@
+<h1>Listing Categorias</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.categoria_index_path(@socket, :index)}>
+    <.live_component
+      module={EjercicioWeb.CategoriaLive.FormComponent}
+      id={@categoria.id || :new}
+      title={@page_title}
+      action={@live_action}
+      categoria={@categoria}
+      return_to={Routes.categoria_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="categorias">
+    <%= for categoria <- @categorias do %>
+      <tr id={"categoria-#{categoria.id}"}>
+        <td><%= categoria.nombre %></td>
+        <td><%= categoria.descripcion %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.categoria_show_path(@socket, :show, categoria) %></span>
+          <span><%= live_patch "Edit", to: Routes.categoria_index_path(@socket, :edit, categoria) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: categoria.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Categoria", to: Routes.categoria_index_path(@socket, :new) %></span>

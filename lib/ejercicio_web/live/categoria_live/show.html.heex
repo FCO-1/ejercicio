@@ -1,0 +1,31 @@
+<h1>Show Categoria</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.categoria_show_path(@socket, :show, @categoria)}>
+    <.live_component
+      module={EjercicioWeb.CategoriaLive.FormComponent}
+      id={@categoria.id}
+      title={@page_title}
+      action={@live_action}
+      categoria={@categoria}
+      return_to={Routes.categoria_show_path(@socket, :show, @categoria)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Nombre:</strong>
+    <%= @categoria.nombre %>
+  </li>
+
+  <li>
+    <strong>Descripcion:</strong>
+    <%= @categoria.descripcion %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.categoria_show_path(@socket, :edit, @categoria), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.categoria_index_path(@socket, :index) %></span>
