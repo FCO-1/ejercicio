@@ -1,0 +1,41 @@
+<h1>Show Ped prod</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.ped_prod_show_path(@socket, :show, @ped_prod)}>
+    <.live_component
+      module={EjercicioWeb.PedProdLive.FormComponent}
+      id={@ped_prod.id}
+      title={@page_title}
+      action={@live_action}
+      ped_prod={@ped_prod}
+      return_to={Routes.ped_prod_show_path(@socket, :show, @ped_prod)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Producto:</strong>
+    <%= @ped_prod.producto_id %>
+  </li>
+
+  <li>
+    <strong>Pedido:</strong>
+    <%= @ped_prod.pedido_id %>
+  </li>
+
+  <li>
+    <strong>Cantidad:</strong>
+    <%= @ped_prod.cantidad %>
+  </li>
+
+  <li>
+    <strong>Total:</strong>
+    <%= @ped_prod.total %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.ped_prod_show_path(@socket, :edit, @ped_prod), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.ped_prod_index_path(@socket, :index) %></span>
