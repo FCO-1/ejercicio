@@ -5,11 +5,9 @@ defmodule Ejercicio.PedidosClientes.PedidosCliente do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "pedidos_clientes" do
-    field :pedido_id, Ecto.UUID
     field :status, :string
-
     belongs_to :pedido_id, Ejercicio.Clientes.Cliente
-
+    has_many :cliente_id, Ejercicio.Pedidos.Pedido
 
     timestamps()
   end
