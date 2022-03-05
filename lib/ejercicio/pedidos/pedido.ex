@@ -8,6 +8,8 @@ defmodule Ejercicio.Pedidos.Pedido do
     field :importe, :decimal
     field :serial, :string
 
+    has_many :ped_prod, Ejercicio.Pedidos.PedProd
+
     timestamps()
   end
 
