@@ -18,4 +18,22 @@ defmodule Ejercicio.ProductosFixtures do
 
     categoria
   end
+
+  @doc """
+  Generate a producto.
+  """
+  def producto_fixture(attrs \\ %{}) do
+    {:ok, producto} =
+      attrs
+      |> Enum.into(%{
+        cantidad: "120.5",
+        descripcion: "some descripcion",
+        nombre: "some nombre",
+        sku: "some sku",
+        total: "120.5"
+      })
+      |> Ejercicio.Productos.create_producto()
+
+    producto
+  end
 end

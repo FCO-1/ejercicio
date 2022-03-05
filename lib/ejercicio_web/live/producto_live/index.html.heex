@@ -1,0 +1,47 @@
+<h1>Listing Productos</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.producto_index_path(@socket, :index)}>
+    <.live_component
+      module={EjercicioWeb.ProductoLive.FormComponent}
+      id={@producto.id || :new}
+      title={@page_title}
+      action={@live_action}
+      producto={@producto}
+      return_to={Routes.producto_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Sku</th>
+      <th>Cantidad</th>
+      <th>Total</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="productos">
+    <%= for producto <- @productos do %>
+      <tr id={"producto-#{producto.id}"}>
+        <td><%= producto.nombre %></td>
+        <td><%= producto.descripcion %></td>
+        <td><%= producto.sku %></td>
+        <td><%= producto.cantidad %></td>
+        <td><%= producto.total %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.producto_show_path(@socket, :show, producto) %></span>
+          <span><%= live_patch "Edit", to: Routes.producto_index_path(@socket, :edit, producto) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: producto.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Producto", to: Routes.producto_index_path(@socket, :new) %></span>

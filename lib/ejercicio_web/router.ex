@@ -25,6 +25,20 @@ defmodule EjercicioWeb.Router do
     live "/cliente/:id", ClienteLive.Show, :show
     live "/cliente/:id/show/edit", ClienteLive.Show, :edit
 
+    live "/categorias", CategoriaLive.Index, :index
+    live "/categorias/new", CategoriaLive.Index, :new
+    live "/categorias/:id/edit", CategoriaLive.Index, :edit
+
+    live "/categorias/:id", CategoriaLive.Show, :show
+    live "/categorias/:id/show/edit", CategoriaLive.Show, :edit
+
+    live "/productos", ProductoLive.Index, :index
+    live "/productos/new", ProductoLive.Index, :new
+    live "/productos/:id/edit", ProductoLive.Index, :edit
+
+    live "/productos/:id", ProductoLive.Show, :show
+    live "/productos/:id/show/edit", ProductoLive.Show, :edit
+
   end
 
   # Other scopes may use custom stacks.
