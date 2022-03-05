@@ -7,7 +7,7 @@ defmodule Ejercicio.Productos.Categoria do
   schema "categorias" do
     field :descripcion, :string
     field :nombre, :string
-
+    has_many :producto, Ejercicio.Productos.Producto
     timestamps()
   end
 

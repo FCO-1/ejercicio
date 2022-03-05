@@ -11,6 +11,7 @@ defmodule Ejercicio.Productos.Producto do
     field :sku, :string
     field :total, :decimal
     belongs_to :categoria, Ejercicio.Productos.Categoria
+    has_many :ped_prod, Ejercicio.Pedidos.PedProd
 
     timestamps()
   end
