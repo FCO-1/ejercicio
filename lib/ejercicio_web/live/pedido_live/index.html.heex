@@ -1,0 +1,41 @@
+<h1>Listing Pedidos</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.pedido_index_path(@socket, :index)}>
+    <.live_component
+      module={EjercicioWeb.PedidoLive.FormComponent}
+      id={@pedido.id || :new}
+      title={@page_title}
+      action={@live_action}
+      pedido={@pedido}
+      return_to={Routes.pedido_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Serial</th>
+      <th>Importe</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="pedidos">
+    <%= for pedido <- @pedidos do %>
+      <tr id={"pedido-#{pedido.id}"}>
+        <td><%= pedido.serial %></td>
+        <td><%= pedido.importe %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.pedido_show_path(@socket, :show, pedido) %></span>
+          <span><%= live_patch "Edit", to: Routes.pedido_index_path(@socket, :edit, pedido) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: pedido.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Pedido", to: Routes.pedido_index_path(@socket, :new) %></span>

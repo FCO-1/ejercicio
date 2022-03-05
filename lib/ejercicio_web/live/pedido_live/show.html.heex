@@ -1,0 +1,31 @@
+<h1>Show Pedido</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.pedido_show_path(@socket, :show, @pedido)}>
+    <.live_component
+      module={EjercicioWeb.PedidoLive.FormComponent}
+      id={@pedido.id}
+      title={@page_title}
+      action={@live_action}
+      pedido={@pedido}
+      return_to={Routes.pedido_show_path(@socket, :show, @pedido)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Serial:</strong>
+    <%= @pedido.serial %>
+  </li>
+
+  <li>
+    <strong>Importe:</strong>
+    <%= @pedido.importe %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.pedido_show_path(@socket, :edit, @pedido), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.pedido_index_path(@socket, :index) %></span>

@@ -1,0 +1,24 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="pedido-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :serial %>
+    <%= text_input f, :serial %>
+    <%= error_tag f, :serial %>
+  
+    <%= label f, :importe %>
+    <%= number_input f, :importe, step: "any" %>
+    <%= error_tag f, :importe %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

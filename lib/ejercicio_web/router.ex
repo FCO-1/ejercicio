@@ -26,6 +26,13 @@ defmodule EjercicioWeb.Router do
     live "/categorias/:id", CategoriaLive.Show, :show
     live "/categorias/:id/show/edit", CategoriaLive.Show, :edit
 
+    live "/pedidos", PedidoLive.Index, :index
+    live "/pedidos/new", PedidoLive.Index, :new
+    live "/pedidos/:id/edit", PedidoLive.Index, :edit
+
+    live "/pedidos/:id", PedidoLive.Show, :show
+    live "/pedidos/:id/show/edit", PedidoLive.Show, :edit
+
     live "/productos", ProductoLive.Index, :index
     live "/productos/new", ProductoLive.Index, :new
     live "/productos/:id/edit", ProductoLive.Index, :edit
