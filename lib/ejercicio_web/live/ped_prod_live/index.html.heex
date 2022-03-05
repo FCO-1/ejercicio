@@ -1,0 +1,45 @@
+<h1>Listing Ped prod</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.ped_prod_index_path(@socket, :index)}>
+    <.live_component
+      module={EjercicioWeb.PedProdLive.FormComponent}
+      id={@ped_prod.id || :new}
+      title={@page_title}
+      action={@live_action}
+      ped_prod={@ped_prod}
+      return_to={Routes.ped_prod_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Pedido</th>
+      <th>Cantidad</th>
+      <th>Total</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="ped_prod">
+    <%= for ped_prod <- @ped_prod_collection do %>
+      <tr id={"ped_prod-#{ped_prod.id}"}>
+        <td><%= ped_prod.producto_id %></td>
+        <td><%= ped_prod.pedido_id %></td>
+        <td><%= ped_prod.cantidad %></td>
+        <td><%= ped_prod.total %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.ped_prod_show_path(@socket, :show, ped_prod) %></span>
+          <span><%= live_patch "Edit", to: Routes.ped_prod_index_path(@socket, :edit, ped_prod) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: ped_prod.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Ped prod", to: Routes.ped_prod_index_path(@socket, :new) %></span>

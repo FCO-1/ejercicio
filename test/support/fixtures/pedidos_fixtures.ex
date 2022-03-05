@@ -18,4 +18,21 @@ defmodule Ejercicio.PedidosFixtures do
 
     pedido
   end
+
+  @doc """
+  Generate a ped_prod.
+  """
+  def ped_prod_fixture(attrs \\ %{}) do
+    {:ok, ped_prod} =
+      attrs
+      |> Enum.into(%{
+        cantidad: "120.5",
+        pedido_id: "7488a646-e31f-11e4-aace-600308960662",
+        producto_id: "7488a646-e31f-11e4-aace-600308960662",
+        total: "120.5"
+      })
+      |> Ejercicio.Pedidos.create_ped_prod()
+
+    ped_prod
+  end
 end

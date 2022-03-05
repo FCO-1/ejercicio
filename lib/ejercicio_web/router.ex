@@ -32,13 +32,6 @@ defmodule EjercicioWeb.Router do
     live "/categorias/:id", CategoriaLive.Show, :show
     live "/categorias/:id/show/edit", CategoriaLive.Show, :edit
 
-    live "/pedidos", PedidoLive.Index, :index
-    live "/pedidos/new", PedidoLive.Index, :new
-    live "/pedidos/:id/edit", PedidoLive.Index, :edit
-
-    live "/pedidos/:id", PedidoLive.Show, :show
-    live "/pedidos/:id/show/edit", PedidoLive.Show, :edit
-
     live "/productos", ProductoLive.Index, :index
     live "/productos/new", ProductoLive.Index, :new
     live "/productos/:id/edit", ProductoLive.Index, :edit
@@ -46,6 +39,19 @@ defmodule EjercicioWeb.Router do
     live "/productos/:id", ProductoLive.Show, :show
     live "/productos/:id/show/edit", ProductoLive.Show, :edit
 
+    live "/pedidos", PedidoLive.Index, :index
+    live "/pedidos/new", PedidoLive.Index, :new
+    live "/pedidos/:id/edit", PedidoLive.Index, :edit
+
+    live "/pedidos/:id", PedidoLive.Show, :show
+    live "/pedidos/:id/show/edit", PedidoLive.Show, :edit
+
+    live "/ped_prod", PedProdLive.Index, :index
+    live "/ped_prod/new", PedProdLive.Index, :new
+    live "/ped_prod/:id/edit", PedProdLive.Index, :edit
+
+    live "/ped_prod/:id", PedProdLive.Show, :show
+    live "/ped_prod/:id/show/edit", PedProdLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
