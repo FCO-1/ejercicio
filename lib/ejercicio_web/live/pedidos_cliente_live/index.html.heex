@@ -1,0 +1,43 @@
+<h1>Listing Pedidos clientes</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.pedidos_cliente_index_path(@socket, :index)}>
+    <.live_component
+      module={EjercicioWeb.PedidosClienteLive.FormComponent}
+      id={@pedidos_cliente.id || :new}
+      title={@page_title}
+      action={@live_action}
+      pedidos_cliente={@pedidos_cliente}
+      return_to={Routes.pedidos_cliente_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pedido</th>
+      <th>Cliente</th>
+      <th>Status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="pedidos_clientes">
+    <%= for pedidos_cliente <- @pedidos_clientes do %>
+      <tr id={"pedidos_cliente-#{pedidos_cliente.id}"}>
+        <td><%= pedidos_cliente.pedido_id %></td>
+        <td><%= pedidos_cliente.cliente_id %></td>
+        <td><%= pedidos_cliente.status %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.pedidos_cliente_show_path(@socket, :show, pedidos_cliente) %></span>
+          <span><%= live_patch "Edit", to: Routes.pedidos_cliente_index_path(@socket, :edit, pedidos_cliente) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: pedidos_cliente.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Pedidos cliente", to: Routes.pedidos_cliente_index_path(@socket, :new) %></span>

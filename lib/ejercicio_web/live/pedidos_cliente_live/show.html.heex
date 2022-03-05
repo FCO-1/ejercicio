@@ -1,0 +1,36 @@
+<h1>Show Pedidos cliente</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.pedidos_cliente_show_path(@socket, :show, @pedidos_cliente)}>
+    <.live_component
+      module={EjercicioWeb.PedidosClienteLive.FormComponent}
+      id={@pedidos_cliente.id}
+      title={@page_title}
+      action={@live_action}
+      pedidos_cliente={@pedidos_cliente}
+      return_to={Routes.pedidos_cliente_show_path(@socket, :show, @pedidos_cliente)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Pedido:</strong>
+    <%= @pedidos_cliente.pedido_id %>
+  </li>
+
+  <li>
+    <strong>Cliente:</strong>
+    <%= @pedidos_cliente.cliente_id %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @pedidos_cliente.status %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.pedidos_cliente_show_path(@socket, :edit, @pedidos_cliente), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.pedidos_cliente_index_path(@socket, :index) %></span>
